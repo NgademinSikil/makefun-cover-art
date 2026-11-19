@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast — GTA-style Cover Art Studio</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23ff2e88'/%3E%3Ctext x='16' y='22' font-size='18' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <header>
+      <h1>Neon Coast</h1>
+      <p class="tag">Turn any photo into poster cover art — multi-panel, sunset grade, bold lettering. Offline, free, your photos never leave this machine.</p>
+    </header>
+
+    <section class="group">
+      <h2>1 · Photos</h2>
+      <label class="file-label">Upload your photos
+        <input id="photo" type="file" accept="image/*" multiple>
+      </label>
+      <p class="hint">Or tap a sample — it goes into the selected panel.</p>
+      <div id="sample-pick" class="samples"></div>
+    </section>
+
+    <section class="group">
+      <h2>2 · Layout</h2>
+      <div id="layout-pick" class="pick"></div>
+      <div id="panel-chips" class="pick chips"></div>
+      <div class="sliders">
+        <label>Zoom <input id="zoom" type="range" min="1" max="3" step="0.05" value="1"> <span id="zoom-val">100%</span></label>
+        <label>Pan X <input id="panx" type="range" min="-50" max="50" step="1" value="0"> <span id="panx-val">0</span></label>
+        <label>Pan Y <input id="pany" type="range" min="-50" max="50" step="1" value="0"> <span id="pany-val">0</span></label>
+      </div>
+      <div class="row">
+        <button id="flip" type="button">Flip panel</button>
+        <button id="reset-crop" type="button">Reset crop</button>
+      </div>
+      <p class="hint">Tip: click a panel on the cover to select it, drag to pan, scroll to zoom.</p>
+    </section>
+
+    <section class="group">
+      <h2>3 · Grade &amp; lettering</h2>
+      <div id="grade-pick" class="pick swatches"></div>
+      <label>Title <input id="title" type="text" maxlength="24" value="NEON COAST"></label>
+      <label>Subtitle <input id="subtitle" type="text" maxlength="40" value="Sunset Heist"></label>
+      <div id="style-pick" class="pick"></div>
+      <div class="toggles">
+        <label><input id="grain" type="checkbox" checked> Film grain</label>
+        <label><input id="vignette" type="checkbox" checked> Vignette</label>
+        <label><input id="frame" type="checkbox" checked> White frame</label>
+        <label><input id="badge" type="checkbox" checked> Badge ribbon</label>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2>4 · Export PNG</h2>
+      <div id="size-pick" class="pick sizes"></div>
+      <div class="row">
+        <button id="export" type="button" class="primary">Export PNG</button>
+        <button id="export-all" type="button">Export all 3 sizes</button>
+      </div>
+      <div class="row">
+        <button id="surprise" type="button">Surprise me</button>
+        <button id="undo" type="button">Undo</button>
+        <button id="redo" type="button">Redo</button>
+      </div>
+      <p id="status" role="status">Loading sample photos…</p>
+    </section>
+
+    <footer>
+      <p>All art, lettering and grades are original — no game logos, official artwork or licensed fonts. Photos stay on your machine.</p>
+    </footer>
+  </section>
+
+  <section class="stage" aria-label="Cover preview">
+    <canvas id="cover" width="900" height="900" aria-label="The cover"></canvas>
+    <p class="stage-hint">Live preview — what you see is the PNG you export.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
